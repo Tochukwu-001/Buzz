@@ -7,6 +7,7 @@ import { FaRegHeart } from "react-icons/fa6";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { FaHeart } from "react-icons/fa";
 import { useSession } from 'next-auth/react';
+import { FaRegUser } from "react-icons/fa";
 
 const Page = () => {
     const { data: session, status } = useSession();
@@ -79,9 +80,10 @@ const Page = () => {
                 >
                     <div className='flex items-center gap-3 md:gap-4'>
                         <Avatar>
-                            <AvatarImage src={session?.user?.image} />
-                            <AvatarFallback>{session?.user?.name.slice(0, 2).toUpperCase()}</AvatarFallback>
+                            <AvatarImage src={post.authorImage || <FaRegUser className='text-2xl'/>} />
+                            <AvatarFallback>{post.author?.slice(0, 2).toUpperCase() || "NA"}</AvatarFallback>
                         </Avatar>
+
                         <div>
                             <h3 className='text-white font-semibold text-base md:text-lg'>{post.author}</h3>
                             <h4 className='text-gray-400 font-light text-xs md:text-sm'>{post.handle || "@unknown_handle"}</h4>
